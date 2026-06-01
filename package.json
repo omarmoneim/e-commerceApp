@@ -1,14 +1,15 @@
 {
   "name": "e-commerce-app",
   "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:e-commerceApp": "node dist/e-commerceApp/server/server.mjs"
-  },
+"scripts": {
+  "ng": "ng",
+  "start": "ng serve",
+  "build": "ng build",
+  "build:ssr": "ng build && ng run e-commerceApp:server",
+  "serve:ssr": "node dist/e-commerceApp/server/server.mjs",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test"
+},
   "prettier": {
     "overrides": [
       {

@@ -8,9 +8,7 @@
       "destination": "/api"
     }
   ],
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/e-commerceApp/**"
-    }
-  }
+ 
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/e-commerceApp/browser"
 }
