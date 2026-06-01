@@ -1,0 +1,6 @@
+#work{
+  background: linear-gradient( rgba(2, 142, 7, 0.6), rgba(0, 255, 8, 0.775) ),url(/images/slider-image-3.jpeg) ;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}

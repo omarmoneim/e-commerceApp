@@ -1,0 +1,44 @@
+<section class="header w-[95%] m-auto  mb-4 mt-10 p-4 rounded-2xl shadow-xl" style="background: #1ABA1A;
+background: linear-gradient(90deg, rgba(26, 186, 26, 1) 50%, rgb(0, 46, 30) 100%);">
+       <h2
+    class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
+    style="color: white;"
+  >
+         Categories 
+  </h2>
+</section>
+
+<section class="p-6 bg-white my-5 w-[95%] m-auto rounded-2xl">
+    <div class=" grid gap-2 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6 ">
+
+
+  @for (category of categories; track category._id) {
+    <div  class=" card border border-surface-400 dark:border-surface-700 rounded-3xl mx-1.5 p-2 pt-6 overflow-hidden group ">
+            <!-- ? img and icons  -->
+          <div class="mb-1 border-b-2 border-gray-50  transition-all duration-800 group-hover:scale-[1.01]  ">
+            <div class="relative mx-auto">
+            <img
+              [src]="category.image"
+              [alt]="category.name"
+              class=" mx-auto rounded-border w-[120px] h-[120px] object-fill "
+            />
+        
+          </div>
+             </div>
+
+        <!-- ~ title and discretion -->
+        <h6 class="capitalize text-[14px] font-semibold ps-1" style="color: #1aba1a;">{{category.name}}</h6>
+            </div>
+ 
+    }
+
+
+      </div>
+
+</section>
+
+
+
+
+  
+

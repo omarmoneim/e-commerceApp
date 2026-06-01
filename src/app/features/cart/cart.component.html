@@ -1,0 +1,114 @@
+<section class="header w-[80%] ms-0.5 mb-4 mt-10 p-4 rounded-2xl shadow-xl bg-white" style="background: #eaeaea;
+background: linear-gradient(90deg, rgb(255, 255, 255) 50%, rgba(7, 232, 33, 0.366) 100%);">
+       <h2
+    class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
+  >
+Your Cart  </h2>
+
+
+</section>
+
+<section class="w-[95%] m-auto bg-white rounded-2xl my-4 p-5">
+
+
+<div class="lg:flex items-start justify-between gap-10">
+
+     <!-- ^ ITEMS SECTION -->
+    <div class=" lg:w-[60%] ">
+        @for (item of userCartData.products; track item.product._id) {
+
+    <div class="bg-gray-100 my-2 p-3 py-4 mb-4 rounded-2xl flex justify-around items-center gap-4 relative  ">
+
+      <!-- ~ IMAGE -->
+    <div class=" p-3 bg-white rounded-lg  w-[50%] ">
+      <img [src]="item.product.imageCover" [alt]="item.product.title" class="h-60 mx-auto">
+    </div>
+          <!-- ~ IMAGE -->
+
+          <!-- *TRANSACTIONS -->
+    <div class="w-[40%] mt-5">
+      <h2 class="mb-2 line-clamp-1 font-bold">{{item.product.title.split(' ' , 2).join(' ')}}</h2>
+
+      <img class="h-20 mb-3 w-24" [src]="item.product.brand.image " [alt]="item.product.brand.name">
+
+      <!-- ? Count -->
+      <div class=" lg:flex items-center gap-2 mb-4">
+<div class="bg-gray-300 border-4 border-gray-600 p-2 px-4 mb-3 rounded-2xl flex items-center justify-between space-x-4 lg:space-x-14">
+  <button (click)="updateCounter(item.product._id, item.count -1)" class="cursor-pointer text-stone-950" ><i class="pi pi-minus" style="font-size: 0.8rem;"></i></button>
+  <span  class="text-stone-950">{{item.count}}</span>
+  <button (click)="updateCounter(item.product._id, item.count +1)" class="cursor-pointer text-stone-950"><i class="pi pi-plus" style="font-size: 0.8rem;"></i></button>
+</div>
+
+<!-- !Remove Item -->
+<button (click)="removeItem(item.product._id)" class=" cursor-pointer text-stone-950 "><i class="pi pi-trash" style="font-size: 1rem;" ></i></button>
+
+      </div>
+            <!-- ? Count -->
+
+
+      <span class="mb-2.5 block text-stone-950 "> <i class="pi pi-pound text-green-900"></i> {{item.price * item.count}}  EGP</span>
+      <span class="mb-2 text-stone-950 "><i class="pi pi-check-circle text-green-700"></i> {{item.product.quantity}} In Stock</span>
+    </div>
+          <!-- *TRANSACTIONS -->
+
+<!-- & SHAPES -->
+     <div class="hidden lg:block absolute right-6 top-5 ">
+    <span class=" bg-stone-800 text-stone-800 rounded-full opacity-10  p-2.5 me-2">Lo</span>
+    <span class=" bg-red-500 text-red-500 rounded-full opacity-20   p-2.5">Lo</span>
+  </div>
+  <!-- & SHAPES -->
+
+  </div>
+
+}
+
+</div>
+  <!-- ^ ITEMS SECTION -->
+
+
+
+
+
+
+
+<!-- ! CHECKOUT SECTION -->
+  <div class=" border-2 border-green-600 rounded-2xl p-4 my-2 w-[60%] lg:w-[30%]">
+
+       <div class="flex items-center justify-between mb-5">
+            <h2 class="font-extrabold text-[18px] ">Order Summary  </h2>
+            <i class="pi pi-receipt "></i>
+
+
+    </div>
+
+    <hr class="text-gray-300 mt-3">
+
+     <div class="flex items-center justify-between mb-5">
+          <h4 class="font-bold">Total Products </h4>
+
+          <p class="text-[20px]">{{userCartData.products.length}}</p>
+    </div>
+
+        <hr class="text-gray-300 mt-3">
+
+        <div class="flex items-center justify-between mb-5">
+          <h4 class="font-bold">Total Price</h4>
+
+          <p class="font-bold"><i class="pi pi-pound"></i>  {{userCartData.totalCartPrice}} </p>
+    </div>
+
+
+
+
+<div class="text-center mb-2">
+      <button [routerLink]="['/checkout',userCartData._id]" class="checkOut w-[70%] rounded-xl  grow px-4 py-2 text-white  ">Check Out </button>
+
+
+</div>
+
+  </div>
+<!-- ! CHECKOUT SECTION -->
+
+</div>
+
+</section>

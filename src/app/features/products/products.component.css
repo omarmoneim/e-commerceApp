@@ -1,0 +1,3 @@
+::ng-deep .p-paginator{
+  background: var(--section-color) !important;
+}

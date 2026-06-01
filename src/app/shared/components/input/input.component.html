@@ -1,0 +1,90 @@
+ <div class="nameInput mb-5">
+  @if (element=='text') {
+     <p-floatlabel variant="on" class="mb-1 ">
+        <textarea
+          class="w-full "
+          pInputText
+          [formControl]="control"
+          [id]="inputId"
+          [readonly]="readonly"
+          
+          autocomplete="off" ></textarea>
+
+        <label [for]="inputId">{{LabelInput}}</label>
+
+      </p-floatlabel>
+
+  }
+  @else if (element=='input') {
+     <p-floatlabel variant="on" class="mb-1 ">
+        <input
+          class="w-full "
+          pInputText
+          [formControl]="control"
+          [type]="inputType || (flagPassword ? 'password' : 'text')"
+          [id]="inputId"
+          [readonly]="readonly"
+          autocomplete="off" />
+        <label [for]="inputId">{{LabelInput}}</label>
+
+        @if (inputId ==='userPassword' ||inputId === 'userRePassword') {
+            <span (click)="flagPassword = !flagPassword">
+              @if (flagPassword===true) {
+              <i
+                class="pi pi-eye-slash absolute top-1 end-4 translate-y-1/2 cursor-pointer text-stone-900"
+              ></i>
+              }@else {
+              <i
+                class="pi pi-eye absolute top-1 end-4 translate-y-1/2 cursor-pointer text-green-900"
+              ></i>
+
+              }
+            </span>
+
+        }
+
+
+
+      </p-floatlabel>
+
+
+  }
+
+      <!-- &  Errors -->
+
+          @if(control?.errors && control?.touched){
+          <div>
+            @if(control?.hasError('required')){
+            <p-message severity="error" variant="simple" size="small">{{LabelInput}} is required</p-message>
+            }
+            @if (control?.hasError('minlength')) {
+              <p-message class="capitalize" severity="error" variant="simple" size="small">Name Should Be more than 3 characters</p-message>
+            }
+            @if (control?.hasError('maxlength')) {
+                          <p-message class="capitalize" severity="error" variant="simple" size="small">Name Should Be less than 20 characters</p-message>
+            }
+            @if (control?.hasError('email')) {
+              <p-message class="capitalize" severity="error" variant="simple" size="small">your Email should match the pattern</p-message>
+            }
+
+            @if (control?.hasError('pattern')) {
+              @if (inputId=="userPhone") {
+               <p-message class="capitalize" severity="error" variant="simple" size="small">You Must Enter An Egyptian Number</p-message>
+            }
+            @if(inputId=='userPassword'){
+                  <p-message class="capitalize" severity="error" variant="simple" size="small"> your password should match the pattern (at least 8 characters , at least 1 special character , at least 1 number )</p-message>
+
+            }
+            }
+
+
+            @if (control?.hasError('mismatch')) {
+              <p-message class="capitalize" severity="error" variant="simple" size="small"> Password confirmation is incorrect</p-message>
+            }
+            </div>
+
+
+          }
+                <!-- &  Errors -->
+
+  </div>

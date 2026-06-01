@@ -1,0 +1,55 @@
+<section class="header w-[80%] ms-0.5 mb-4 mt-10 p-4 rounded-2xl shadow-xl bg-white" style="background: #eaeaea;
+background: linear-gradient(90deg, rgb(255, 255, 255) 50%, rgba(251, 23, 23, 0.366) 100%);">
+       <h2
+    class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
+  >
+Your WishList <i class="pi pi-heart-fill text-red-700" ></i>  </h2>
+
+
+</section>
+
+     <!-- ^ ITEMS SECTION -->
+      <section class=" w-[95%] mx-auto my-8 rounded-2xl p-5 bg-white">
+            <div class=" lg:w-[60%] ">
+        @for (item of userWishlist; track item.id) {
+
+    <div class="bg-rose-100 my-2 p-3 py-4 mb-4 rounded-2xl flex justify-around items-center gap-4 relative  ">
+
+      <!-- ~ IMAGE -->
+    <div class=" p-3 bg-white rounded-lg  w-[50%] ">
+      <img [src]="item.imageCover" [alt]="item.title" class="h-60 mx-auto">
+    </div>
+          <!-- ~ IMAGE -->
+
+          <!-- *TRANSACTIONS -->
+    <div class="w-[40%] mt-5">
+      <h2 class="mb-2 line-clamp-1 font-bold">{{item.title.split(' ' , 2).join(' ')}}</h2>
+
+      <img class="h-20 mb-3 w-24" [src]="item.brand.image " [alt]="item.brand.name">
+
+  <p class=" font-extrabold"> Price : <i class="pi pi-pound me-1"></i> <span class="line-through text-red-950">{{item.price}}</span> </p>
+  <p class="font-extrabold"> Price After Discount : <i class="pi pi-pound"></i> {{item.priceAfterDiscount || item.price}}</p>
+
+
+<!-- !Remove Item -->
+<button (click)="removeItemFromWishList(item.id)" class=" cursor-pointer text-red-950 font-bold">Remove   <i class="pi pi-trash" style="font-size: 1rem;" ></i></button>
+
+
+    </div>
+
+<!-- & SHAPES -->
+     <div class="hidden lg:block absolute right-6 top-5 ">
+    <span class=" bg-stone-800 text-stone-800 rounded-full opacity-10  p-2.5 me-2">Lo</span>
+    <span class=" bg-red-500 text-red-500 rounded-full opacity-20   p-2.5">Lo</span>
+  </div>
+  <!-- & SHAPES -->
+
+  </div>
+
+}
+
+</div>
+
+      </section>
+
+  <!-- ^ ITEMS SECTION -->

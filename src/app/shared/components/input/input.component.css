@@ -1,0 +1,7 @@
+::ng-deep .p-floatlabel{
+  background: var(--section-color) !important;
+}
+
+::ng-deep .p-inputtext{
+  color: var(--header-color) !important;
+}

@@ -1,0 +1,192 @@
+
+<header class=" sticky top-0 left-0 z-40  w-full mb-4 ">
+   <section class="bg-white uppercase">
+      <div class="w-[95%] mx-auto flex justify-between items-center pt-1 px-5">
+          <div>
+        <span class="bg-gray-200 p-1 rounded-3xl  text-[10px] md:text-[12px] ">Hotline 24/7</span> <span class="ms-2 text-[14px] text-red-500  font-bold"> <i class="pi pi-phone text-[12px]"style="font-size: 0.8rem"></i> 1999</span>
+        </div>
+          <p class="text-[10px] md:text-[12px] text-black font-bold pe-0">Sell On FreshCart</p>
+      </div>
+
+    </section>
+
+    <!-- & Navbar -->
+    <nav class="bg-white shadow-md  w-full  py-0.5 rounded-b-2xl ">
+      <div class="w-[95%] mx-auto px-3 sm:px-4 lg:px-5 ">
+        <div class="flex justify-between items-center h-16">
+          <!-- Desktop menu -->
+          <div class=" lg:flex justify-center items-center ">
+              <!-- Logo -->
+
+            <div class="me-3">
+            <img src="/images/freshcart-logo.svg" alt="Logo"  />
+            </div>
+          <!-- Links -->
+            <div class="font-bold text-[14px] uppercase hidden lg:flex">
+            @if (isLogin===true) {
+            <a routerLink="/home"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700  hover:text-lime-600 transition me-4">Home</a>
+            <a routerLink="/products"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition me-4">Products</a>
+            <a routerLink="/brands"   routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition me-4">Brands</a>
+            <a routerLink="/categories"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition me-4">Categories</a>
+              }
+
+            </div>
+
+          </div>
+
+          <!-- Desktop button -->
+          <div class="font-bold text-[14px] uppercase  hidden lg:flex">
+
+      
+
+          <div class="flex items-center justify-between">
+            <a routerLink="/cart" 
+             routerLinkActive="text-lime-600 bg-black " 
+             class="text-gray-700 bg-gray-200 rounded-full w-11 h-11 flex items-center justify-center me-5 hover:text-lime-600 transition  ">
+               
+             @if (cartCount) {
+            <p-overlaybadge [value]="cartCount">
+                <i class="pi pi-cart-plus mt-0.5" style="font-size: 1.5rem"></i>
+            </p-overlaybadge>    
+             }@else{
+                              <i class="pi pi-cart-plus mt-0.5" style="font-size: 1.5rem"></i>
+
+               }
+             
+           
+            
+            </a>
+
+
+            <a routerLink="/wishlist"  
+            routerLinkActive="text-red-600 bg-black"
+             class="text-red-500 me-5 bg-gray-200 rounded-full w-11 h-11 flex items-center justify-center hover:text-red-800 transition "> 
+                <i class="pi pi-heart-fill mt-0.5" style="font-size: 1.5rem"></i>
+            </a>
+
+            @if (checkCookie()) {
+
+            <p-avatar icon="pi pi-user" style="background-color: var(--main-color); color: #ffffff" shape="circle" />
+            <a (click)="signOutClicked()" routerLink="/signout" routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition ms-4">
+              <span class="pi pi-sign-out me-1"></span>SignOut</a>
+            }
+            @else {
+             <a routerLink="/login" routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition me-1"><span class="pi pi-user me-1"></span>Login</a>
+            <span>/</span>
+            <a routerLink="/register" routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition ms-1 me-2.5 "><span class="pi pi-user-plus me-1"></span>Register</a>
+            }
+              </div>
+
+          </div>
+
+          <!-- Hamburger toggle -->
+          <div class=" flex items-center lg:hidden">
+            <button (click)="toggleSidebar()" aria-label="Toggle sidebar">
+             <i class="pi pi-align-justify text-stone-950" style="font-size: 1.2rem"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- & Navbar -->
+
+    <!-- !Green section   -->
+     <section class=" search-section rounded-2xl p-3 shadow-lg shadow-green-900  z-40 w-full ">
+      <div class="w-[95%] mx-auto px-3 py-2.5 sm:px-4 lg:px-5  ">
+        <div class="flex justify-between items-center">
+
+          <h6 class="uppercase m-1 text-[8px] md:text-[12px]" style="color: white;">free shipping over 100EGP</h6>
+            <h6 class="uppercase m-1 text-[8px] md:text-[12px] " style="color: white;">30 days money back</h6>
+            <h6 class="uppercase m-1 text-[8px] md:text-[12px] " style="color: white;">100% secure payment</h6>
+
+
+        </div>
+      </div>
+     </section>
+    <!-- ! Green section  -->
+
+
+
+
+</header>
+
+    <!-- *Overlay -->
+    <div
+      *ngIf="sidebarOpen"
+      (click)="toggleSidebar() "
+      (keydown)="toggleSidebar()"
+      class="fixed top-0 left-0 right-0 bottom-0 bg-transparent  z-50 "
+    ></div>
+    <!-- *Overlay -->
+
+    <!-- ~Sidebar -->
+    <div
+      class="uppercase fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 lg:hidden"
+      [ngClass]="sidebarOpen ? 'translate-x-0' : 'translate-x-full'"
+    >
+      <div class="flex flex-col h-full p-6 space-y-6">
+        <!-- Header -->
+        <div class="flex justify-between items-center">
+            <img src="/images/freshcart-logo.svg" alt="Logo"  />
+          <button (click)="toggleSidebar()">
+           <i class="pi pi-arrow-right text-stone-900"></i>
+
+          </button>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-col space-y-4">
+          @if (isLogin===true) {
+            <a routerLink="/home"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700  hover:text-lime-600 transition me-4">Home</a>
+            <a routerLink="/products"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition me-4">Products</a>
+            <a routerLink="/brands"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition me-4">Brands</a>
+            <a routerLink="/categories"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition me-4">Categories</a>
+            <a routerLink="/cart"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition ">
+                  @if (cartCount) {
+                <p-overlaybadge [value]="cartCount" class="flex">
+                    <i class="pi pi-cart-plus" style="font-size: 1.5rem"></i>
+                </p-overlaybadge>
+                  }@else{
+                                        <i class="pi pi-cart-plus" style="font-size: 1.5rem"></i>
+                  }
+   
+
+               </a>
+            <a routerLink="/wishlist"  routerLinkActive="text-red-600   " class="text-red-500 me-5 hover:text-red-800 transition ">
+           
+                <i class="pi pi-heart-fill" style="font-size: 1.3rem"></i>    
+            
+
+           </a>
+
+          }
+        </div>
+
+        <div class="mt-auto flex flex-col">
+          @if (checkCookie()) {
+              <div class="flex items-center justify-between">
+            <a (click)="signOutClicked()" routerLink="/signout" routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " class="text-gray-700 hover:text-lime-600 transition ms-4">
+              <span class="pi pi-sign-out me-1"></span>SignOut</a>
+            <p-avatar icon="pi pi-user" style="background-color: var(--main-color); color: #ffffff" shape="circle" />
+
+
+              </div>
+
+
+
+          }
+          @else {
+
+            <a routerLink="/login" routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400" class="text-gray-700 hover:text-lime-600 transition-discrete "><span class="pi pi-user me-1"></span>Login</a>
+            <br>
+            <a routerLink="/register" routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400" class="text-gray-700 hover:text-lime-600 transition-discrete  "><span class="pi pi-user-plus me-1"></span>Register</a>
+            <br>
+          }
+
+        </div>
+      </div>
+    </div>
+    <!-- ~Sidebar -->
+
+
+

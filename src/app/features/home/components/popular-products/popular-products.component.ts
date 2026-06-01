@@ -1,0 +1,128 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { Carousel } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { Tag } from 'primeng/tag';
+import { ProductsService } from '../../../../core/services/products/products.service';
+import { Products } from '../../../../core/models/products.interface';
+import { RouterLink } from "@angular/router";
+import { CartService } from '../../../cart/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from '../../../wish-list/services/wishlist.service';
+
+
+@Component({
+  selector: 'app-popular-products',
+  imports: [Carousel, ButtonModule, Tag, RouterLink],
+  templateUrl: './popular-products.component.html',
+  styleUrl: './popular-products.component.css',
+})
+export class PopularProductsComponent implements OnInit {
+   private readonly productsService = inject(ProductsService);
+   private readonly cartService =inject(CartService)
+   private readonly wishlistService =inject(WishlistService)
+       private readonly toastr=inject( ToastrService)
+
+  productsList:Products[]=[];
+  responsiveOptions: any[] | undefined;
+
+  ngOnInit(): void {
+  this.getProducts();
+   this.responsiveOptions = [
+            {
+                breakpoint: '1400px',
+                numVisible: 5,
+                numScroll: 1
+            },
+            {
+                breakpoint: '1199px',
+                numVisible: 4,
+                numScroll: 1
+            },
+            {
+                breakpoint: '767px',
+                numVisible: 3,
+                numScroll: 1
+            },
+            {
+                breakpoint: '640px',
+                numVisible: 2,
+                numScroll: 1
+            },
+            {
+                breakpoint: '575px',
+                numVisible: 2,
+                numScroll: 1
+            },
+            {
+                breakpoint: '420px',
+                numVisible: 1,
+                numScroll: 1
+            }
+        ]
+  }
+
+getProducts():void{
+  this.productsService.getAllProducts().subscribe({
+    next:(res)=>{
+       this.productsList = res.data
+    },
+    error:(err)=>{console.log(err)}
+  })
+}
+
+
+addToCart(id:string):void{
+  this.cartService.addProductToCart(id).subscribe({
+    next:(res)=>{
+      console.log(res);
+      this.cartService.countNumber.next(res.numOfCartItems) ;
+       if(res.status === "success"){
+        this.toastr.success(res.message,"Fresh Cart")
+      }
+
+    },
+    error:(err)=>{
+
+      console.log(err);
+                      this.toastr.error("Failed Request","Fresh Cart")
+
+
+
+    }
+  })
+
+}
+
+addMyProductTowishlist(id:string):void{
+  this.wishlistService.addProductToWishlist(id).subscribe({
+    next:(res)=>{
+      console.log(res);
+      if(res.status ==="success"){
+        this.toastr.show(res.message)
+
+      }
+
+    },
+    error:(err)=>{
+      console.log(err);
+              this.toastr.error("Failed Request","Fresh Cart")
+
+
+
+    }
+  })
+}
+getSeverity(status: string): any {
+        switch (status) {
+            case 'INSTOCK':
+                return 'success';
+            case 'LOWSTOCK':
+                return 'warn';
+            case 'OUTOFSTOCK':
+                return 'danger';
+            default:
+                return 'info';
+        }
+    }
+
+}

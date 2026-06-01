@@ -1,0 +1,71 @@
+<section class="w-[95%] m-auto bg-white rounded-2xl my-6 p-10">
+  <div class="md:flex justify-around items-center px-2 py-8 gap-4">
+    <div class="w-full lg:ms-6 pe-10">
+      <img src="/images/login.svg.png" alt="Register" />
+    </div>
+
+    <div class="mt-4 w-full lg:grow">
+      <div class="mb-5">
+        <h1
+          class="font-extrabold mb-3 text-2xl"
+          style="color: var(--main-color)"
+        >
+          Login
+        </h1>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+
+        <app-input
+          [control]="loginForm.get('email')"
+          [inputType]="'email'"
+          [inputId]="'userEmail'"
+          [LabelInput]="'Email'"
+        ></app-input>
+
+        <app-input
+          [control]="loginForm.get('password')"
+          [inputId]="'userPassword'"
+          [LabelInput]="'Password'"
+        ></app-input>
+
+        <span class="my-3 text-[12px] text-stone-950">if you don't have account on <span class="text-green-700 text-[14px]">fresh cart</span>  please 
+        <a class="underline  underline-offset-1 text-lime-700 text-[14px]" routerLink="/register">signUp</a> 
+        Or
+              <a class="underline  underline-offset-1 text-lime-900 text-[14px] font-extrabold" routerLink="/forget"> Forget Password? </a>
+
+      </span>
+
+        <button
+          type="submit"
+          class="p-2.5 rounded-2xl border-2 text-white mb-5 mt-2 w-full"
+          [disabled]="isLoading===true"
+
+        >
+          login @if (isLoading===true) {
+          <i
+            class="pi pi-spin pi-spinner-dotted ms-1"
+            style="font-size: 1.1rem"
+          ></i>
+
+          }
+        </button>
+
+        @if (errMessage) {
+        <div
+          class="py-6 px-2 bg-red-200 text-red-800 font-extrabold text-center rounded-2xl shadow-lg shadow-red-800"
+        >
+          {{ errMessage }} !
+        </div>
+        } @else if (successMessage){
+        <div
+          class="py-6 px-2 bg-green-600 text-green-900 font-extrabold text-center rounded-2xl shadow-sm "
+        >
+          {{ successMessage }}
+        </div>
+
+        }
+      </form>
+    </div>
+  </div>
+</section>

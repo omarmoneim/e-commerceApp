@@ -1,0 +1,52 @@
+
+
+<app-main-section></app-main-section>
+<section class="w-[95%] m-auto">
+<app-popular-products></app-popular-products>
+<app-popular-categories></app-popular-categories>
+</section>
+
+
+
+
+<!-- Electronic Heading Section  -->
+<section class="w-[95%] m-auto">
+
+<div class="header w-[80%] mb-4 p-4 ms-auto  rounded-2xl shadow-xl" style="background-color: #1ABA1A;">
+       <h2
+    class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
+    style="color: white;"
+  >
+    Popular Electronics
+
+  </h2>
+</div>
+</section>
+
+<!-- Popular Electronics  -->
+<section class="p-6 bg-white my-5 w-[95%] m-auto rounded-2xl">
+  <div class=" grid gap-2 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5 ">
+    @for (product of listOfProducts.slice(0,10); track product.id) {
+      @if(product.category.name == 'Electronics'){
+          <app-card [product]="product"></app-card>
+      }
+
+    }
+
+  </div>
+</section>
+
+
+<section id="work" class="p-40 bg-white my-5 w-[98%] m-auto rounded-2xl">
+  <div class="text-white font-semibold tracking-widest text-[30px] w-full">
+    <i class="pi pi-star-fill"  style="color: gold ; font-size: 2rem;" ></i>
+    Buy With 300EGP And Get <span class="text-orange-400 font-extrabold text-[38px] underline underline-offset-4 decoration-3 decoration-lime-100">50EGP</span> Off
+ </div>
+
+</section>
+
+
+
+<section class="w-[95%] m-auto">
+<app-popular-brands></app-popular-brands>
+</section>

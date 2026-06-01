@@ -1,0 +1,25 @@
+<section class="header w-[80%] mb-4 p-4 rounded-2xl shadow-xl" style="background-color: #1ABA1A;">
+       <h2
+    class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
+    style="color: white;"
+  >
+        Top Brands
+
+
+  </h2>
+</section>
+
+<section class="mb-6 bg-gray-50 p-4 shadow-2xl rounded-2xl">
+  <owl-carousel-o [options]="brandsOptions">
+
+    @for (brand of popularBrands.slice(0,20); track brand._id) {
+      <ng-template carouselSlide [id]="brand._id">
+        <img [src]="brand.image" class="w-full rounded-3xl border-2 border-black " [alt]="brand.name" >
+      </ng-template>
+    }
+
+  </owl-carousel-o>
+
+
+</section>
+

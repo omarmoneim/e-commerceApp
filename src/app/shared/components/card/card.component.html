@@ -1,0 +1,67 @@
+
+
+    <div  class=" card border border-surface-400 dark:border-surface-700 rounded-3xl mx-1.5 p-2 pt-6 overflow-hidden group ">
+        <div [routerLink]="['/details', product.slug ,product.id]" class="cursor-pointer">
+            <!-- ? img and icons  -->
+          <div class="mb-1 border-b-2 border-gray-50  transition-all duration-800 group-hover:scale-[1.01]  ">
+            <div class="relative mx-auto">
+            <img
+              [src]="product.imageCover"
+              [alt]="product.title"
+              class=" mx-auto rounded-border w-[120px] h-[120px] object-fill "
+            />
+            @if (product.ratingsAverage >= 4.5) {
+              <p-tag
+              [value]=" 'Best Seller'"
+              class="absolute left-1 -top-4.5 opacity-40  m-0.5  transition-all duration-800   group-hover:opacity-80  "
+              style="color:white ; background-color: #1aba1a; font-size: 12px;"
+            />
+            }
+          </div>
+             </div>
+
+        <!-- ~ title and discretion -->
+        <h6 class="capitalize text-[14px] font-semibold ps-1" style="color: #1aba1a;">{{product.category.name}}</h6>
+
+        <div class="flex-col justify-between items-center mb-1 p-1">
+          <h4 class="font-semibold sm:text-[13px] lg:text-[16px] line-clamp-1">
+            {{ product.title }}
+          </h4>
+
+          <p class="line-clamp-1 font-normal tracking-wide">
+            {{ product.description }}
+          </p>
+        </div>
+
+        <!--! Price and rating  -->
+        <div class="flex justify-between items-center p-0 mb-1">
+          <span class="mt-0 text-stone-950 font-semibold">{{ product.price + " EGP" }}</span>
+          <span class="font-normal text-stone-950"
+            >{{ product.ratingsAverage }}
+            @if(product.ratingsAverage >= 4.5 ){
+            <i class="pi pi-star-fill" style="color: gold"></i>
+            } @else {
+            <i class="pi pi-star-half-fill" style="color: gold"></i>
+
+            }
+          </span>
+        </div>
+
+       <!-- & information  -->
+          <span class=" font-medium tracking-wide text-gray-600 capitalize p-1 text-[14px]">
+            {{ product.quantity }}  In Stock
+          </span>
+            </div>
+
+            <!-- ~ Buttons -->
+          <div class="flex justify-between items-center  group-hover:transition-all duration-500 px-3 pt-3">
+              <button (click)="addMyProductTowishlist(product.id)" class="  px-4 py-1 w-12 h-12 rounded-full  bg-red-300 me-1 cursor-pointer hover:bg-red-900 hover:grow transition-all duration-500 "><i class="pi pi pi-heart text-white "></i></button>
+              <button (click)="addProductsToCart(product.id)"  class="addCart w-12 h-12 rounded-full  px-4 py-1 text-white bg-gray-500 hover:bg-green-900 hover:grow transition-all duration-500"><i class="pi pi-shopping-cart text-white" style="size: 1.2rem;"> </i> </button>
+            </div>
+
+      </div>
+
+
+
+
+<!--  translate-y-[150%] translate-y-0  -->

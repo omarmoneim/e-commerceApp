@@ -1,0 +1,80 @@
+  <section class="header w-[95%] mx-auto mb-4 mt-10 p-4 rounded-2xl shadow-xl bg-white" style="background: #eaeaea;
+background: linear-gradient(90deg, rgb(255, 255, 255) 50%, rgba(38, 209, 0, 0.848) 100%);">
+       <h1
+    class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
+  >
+Check Out  </h1>
+
+
+</section>
+
+<section class="w-[95%] m-auto bg-white rounded-2xl my-6 p-10">
+
+
+
+    <div class="mt-4 w-full lg:grow">
+
+
+      <form [formGroup]="checkoutForm">
+
+        <!-- !details  -->
+        <app-input
+          [element]="'text'"
+          [control]="checkoutForm.get('shippingAddress')?.get('details')"
+          [inputId]="'Details'"
+          [LabelInput]="'Details'"
+        ></app-input>
+
+        <!-- !phone  -->
+        <app-input
+          [element]="'input'"
+          [control]="checkoutForm.get('shippingAddress')?.get('phone')"
+          [inputType]="'tel'"
+          [inputId]="'userPhone'"
+          [LabelInput]="'Phone'"
+        ></app-input>
+
+        <!-- !city  -->
+        <app-input
+          [element]="'input'"
+          [control]="checkoutForm.get('shippingAddress')?.get('city')"
+          [inputType]="'text'"
+          [inputId]="'city'"
+          [LabelInput]="'City'"
+        ></app-input>
+
+   <div class="flex items-center space-x-4">
+          <button
+             (click)="submitFormCash()"
+             [disabled]="isVisa==true"
+          type="submit"
+          class="btn p-2.5 rounded-2xl border-2 text-white mb-5 mt-2 w-full text-[9px] md:text-[16px]"
+        >
+
+          Cache On Delivery
+          <i class="pi pi-wallet" style="font-size: 0.8rem;"></i>
+        </button>
+
+     <button
+         (click)="submitFormVisa()"
+          [disabled]="isCash==true"
+          type="submit"
+          class="p-2.5 rounded-2xl border-2 text-white mb-5 mt-2 w-full text-[10px] md:text-[16px]"
+        >
+
+        @if(isLoading==true){
+          <i class="pi pi-spin pi-spinner"></i>
+        }
+         Payment By Visa
+          <i class="pi pi-credit-card text-yellow-500 me-1" style="font-size: 0.8rem;"></i>
+
+
+
+        </button>
+
+        </div>
+
+      </form>
+
+    </div>
+</section>

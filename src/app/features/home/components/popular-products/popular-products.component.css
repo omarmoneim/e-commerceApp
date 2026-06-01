@@ -1,0 +1,9 @@
+.addCartBtn{
+  background-color: var(--main-color);
+  transition: background-color 1.5s;
+  cursor: pointer;
+}
+
+.addCartBtn:hover{
+  background-color: #0f6b0f;
+}

@@ -1,0 +1,3 @@
+::ng-deep .owl-theme .owl-nav.disabled + .owl-dots{
+  transform: translateY(-30px);
+}

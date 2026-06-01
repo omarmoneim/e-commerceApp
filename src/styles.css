@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+@import "primeicons/primeicons.css";
+:root{
+  color-scheme: light only;
+  --body-color:#EBEEF6;
+  --section-color:#FFFFFF;
+  --main-color:#1ABA1A;
+  --header-color:#212529;
+  --content-color:#777777;
+}
+
+body{
+  background-color: var(--body-color);
+    font-family: "Inter", sans-serif;
+
+}
+h1,h2,h3,h4,h5,h6{
+  color: var(--header-color);
+}
+
+p{
+  color: var(--content-color);
+}
+button{
+  cursor: pointer;
+}
+input:focus{
+ color: var(--main-color);
+}
+footer{
+  background-color: var(--section-color);
+}
+
+
+::selection{
+background: #82fa82;
+background-color: linear-gradient(90deg, rgba(26, 186, 26, 1) 50%, rgb(0, 46, 30) 100%);
+
+color: var(--header-color);
+}
+

@@ -1,0 +1,11 @@
+.search-section{
+  background-color: var(--main-color);
+}
+
+
+/* @media(max-width:360px){
+  .search-section{
+    margin-top: 18px;
+  }
+} */
+
