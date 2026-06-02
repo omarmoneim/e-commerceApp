@@ -40,6 +40,23 @@
       
 
           <div class="flex items-center justify-between">
+
+            <div class="card">  
+                         <a routerLink="/allorders"
+            class=" allorders text-gray-700 bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center me-5 hover:text-lime-600 transition  ">
+
+            <p-overlaybadge [value]="">
+                <i class="pi pi-money-bill mt-0.5" style="font-size: 1.2rem"></i>
+            </p-overlaybadge>  
+            
+            
+
+           </a>
+           <span class="hidden-text ">Check your Bill</span>
+
+            </div>
+
+           
             <a routerLink="/cart" 
              routerLinkActive="text-lime-600 bg-black " 
              class="text-gray-700 bg-gray-200 rounded-full w-11 h-11 flex items-center justify-center me-5 hover:text-lime-600 transition  ">
@@ -141,6 +158,11 @@
             <a routerLink="/products"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition me-4">Products</a>
             <a routerLink="/brands"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition me-4">Brands</a>
             <a routerLink="/categories"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition me-4">Categories</a>
+            <a routerLink="/allorders"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400   " class="text-gray-700 me-5 hover:text-lime-600 transition ">
+           
+                <span class=" text-[16px]">Your Orders</span>
+           </a>
+            
             <a routerLink="/cart"  routerLinkActive="text-lime-600 underline underline-offset-3 decoration-2 decoration-lime-400 " (click)="closeSidebar()" class="text-gray-700 hover:text-lime-600 transition ">
                   @if (cartCount) {
                 <p-overlaybadge [value]="cartCount" class="flex">
@@ -158,6 +180,7 @@
             
 
            </a>
+
 
           }
         </div>
