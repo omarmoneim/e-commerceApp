@@ -29,7 +29,6 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "vercel.json",
               {
                 "glob": "**/*",
                 "input": "public"
