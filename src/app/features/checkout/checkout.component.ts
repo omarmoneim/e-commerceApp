@@ -91,13 +91,18 @@ export class CheckoutComponent implements OnInit {
       console.log(this.checkoutForm.value);
             this.isVisa=true
             this.isLoading =true
+
+            const currentUrl = window.location.origin;
+            const orderData = {
+                                shippingAddress: this.checkoutForm.value,
+                                url: currentUrl 
+                              };
             console.log("From visa");
-            this.cartService.checkoutSession(this.id,this.checkoutForm.value).subscribe({
+            this.cartService.checkoutSession(this.id,orderData).subscribe({
               next:(res)=>{
                console.log(res);
                if(res.status =='success'){
                this.isLoading =false
-
                 window.open(res.session.url,'_self')
                }
               },
