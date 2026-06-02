@@ -99,7 +99,7 @@ export class CheckoutComponent implements OnInit {
                this.isLoading =false
                let stripeUrl:any = res.session.url;
                if (stripeUrl.includes('localhost:4200')) {
-                stripeUrl = stripeUrl.replace('http://localhost:4200', 'https://e-commerce-app-eta-sable.vercel.app');
+                 stripeUrl.replace('http://localhost:4200', 'https://e-commerce-app-eta-sable.vercel.app/#');
               }
 
                 window.open(res.session.url,'_self')
