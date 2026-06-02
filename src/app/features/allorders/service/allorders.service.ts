@@ -5,7 +5,6 @@ import { environment } from '../../../../environments/environment';
 import { jwtDecode } from "jwt-decode";
 import { CookieService } from 'ngx-cookie-service';
 import { DecodeToken } from '../../../core/auth/models/decode-token.interface';
-
 @Injectable({
   providedIn: 'root',
 })
