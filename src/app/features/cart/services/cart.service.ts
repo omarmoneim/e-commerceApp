@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -46,12 +46,18 @@ export class CartService {
 )
 }
 
+checkoutSession(id: string | null, data: object): Observable<any> {
+    return this.httpClient.post(
+      environment.baseUrl + `orders/checkout-session/${id}?url=${environment.paymentRedirectUrl}`,
+      data
+    );}
 
-checkoutSession(id:string|null,data:object):Observable<any>{
- return this.httpClient.post(environment.baseUrl+`orders/checkout-session/${id}?url=http://localhost:4200`,
-    data
-  )
-}
+
+// checkoutSession(id:string|null,data:object):Observable<any>{
+//  return this.httpClient.post(environment.baseUrl+`orders/checkout-session/${id}?url=http://localhost:4200`,
+//     data
+//   )
+// }
 checkoutCashSession(id:string|null ,data:object):Observable<any>{
  return this.httpClient.post(environment.baseUrl+`orders/${id}`,
   data  )
