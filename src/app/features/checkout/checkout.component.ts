@@ -97,12 +97,8 @@ export class CheckoutComponent implements OnInit {
                console.log(res);
                if(res.status =='success'){
                this.isLoading =false
-               let stripeUrl:any = res.session.url;
-               if (stripeUrl.includes('localhost:4200')) {
-                 stripeUrl.replace('http://localhost:4200', 'https://e-commerce-app-eta-sable.vercel.app/#');
-              }
-
-                window.open(res.session.url,'_self')
+                this.router.navigate(['/allorders'])
+                //window.open(res.session.url,'_self')
                }
               },
               error:(err)=>{
