@@ -92,16 +92,15 @@ export class CheckoutComponent implements OnInit {
             this.isVisa=true
             this.isLoading =true
             console.log("From visa");
-            const currentUrl = globalThis.location.origin;
-            const orderData = {
-                      shippingAddress: JSON.stringify(this.checkoutForm.value), 
-                      url: currentUrl 
-                    };
-            this.cartService.checkoutSession(this.id,orderData).subscribe({
+            this.cartService.checkoutSession(this.id,this.checkoutForm.value).subscribe({
               next:(res)=>{
                console.log(res);
                if(res.status =='success'){
                this.isLoading =false
+               let stripeUrl:any = res.session.url;
+               if (stripeUrl.includes('localhost:4200')) {
+                stripeUrl = stripeUrl.replace('http://localhost:4200', 'https://e-commerce-app-eta-sable.vercel.app');
+              }
 
                 window.open(res.session.url,'_self')
                }
