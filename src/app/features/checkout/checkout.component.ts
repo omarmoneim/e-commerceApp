@@ -98,7 +98,6 @@ export class CheckoutComponent implements OnInit {
                if(res.status =='success'){
                this.isLoading =false
                window.open(res.session.url,'_self')
-               this.router.navigate(['/allorders'])
                }
               },
               error:(err)=>{

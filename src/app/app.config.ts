@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes ,
-       withHashLocation(),
+      //  withHashLocation(),
     withViewTransitions(),
     withInMemoryScrolling({scrollPositionRestoration:'top'})), provideClientHydration(withEventReplay()),
       provideAnimationsAsync(),
