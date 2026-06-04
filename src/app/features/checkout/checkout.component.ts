@@ -44,14 +44,9 @@ export class CheckoutComponent implements OnInit {
   getCartId():void{
     this.activatedRoute.paramMap.subscribe({
       next:(urlParams)=>{
-        this.id= urlParams.get('id')
-        (this.id);
-
-
-
+        this.id=urlParams.get('id')
       },
       error:(err)=>{
-        ();
 
 
       }
@@ -60,19 +55,18 @@ export class CheckoutComponent implements OnInit {
 
   submitFormCash():void{
     if(this.checkoutForm.valid){
-      (this.checkoutForm.value);
+      console.log(this.checkoutForm.value);
       this.isCash=true
-      ("From cash");
+      console.log("From cash");
       this.cartService.checkoutCashSession(this.id,this.checkoutForm.value).subscribe({
         next:(res)=>{
-            (res)
+            console.log(res)
             if(res.status =='success'){
               this.router.navigate(['/allorders'])
               }
 
         },
         error:(err)=>{
-          (err);
 
 
         }
@@ -80,7 +74,7 @@ export class CheckoutComponent implements OnInit {
 
 
     }else{
-      ('ERROR FROM CHECK FORM');
+      console.log('ERROR FROM CHECK FORM');
 
     }
 
@@ -88,13 +82,12 @@ export class CheckoutComponent implements OnInit {
   }
   submitFormVisa():void{
     if(this.checkoutForm.valid){
-      (this.checkoutForm.value);
+      console.log(this.checkoutForm.value);
             this.isVisa=true
             this.isLoading =true
-            ("From visa");
+            console.log("From visa");
             this.cartService.checkoutSession(this.id,this.checkoutForm.value).subscribe({
               next:(res)=>{
-               (res);
                if(res.status =='success'){
                this.isLoading =false
                window.open(res.session.url,'_self')
@@ -102,14 +95,13 @@ export class CheckoutComponent implements OnInit {
               },
               error:(err)=>{
 
-                (err);
 
               }
             })
 
 
     }else{
-      ('ERROR FROM visa FORM');
+      console.log('ERROR FROM visa FORM');
 
     }
 
