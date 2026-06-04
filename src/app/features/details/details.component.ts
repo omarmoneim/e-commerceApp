@@ -1,10 +1,11 @@
 import { GalleriaModule } from 'primeng/galleria';
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDetailsService } from './service/product-details.service';
 import { Products } from '../../core/models/products.interface';
 import { CartService } from '../cart/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -17,7 +18,10 @@ export class DetailsComponent implements OnInit {
   private readonly activatedRoute =inject(ActivatedRoute)
   private readonly productDetailsService = inject(ProductDetailsService)
   private readonly cartService = inject(CartService)
-      private readonly toastr=inject( ToastrService)
+  private readonly toast=inject( ToastrService)
+  private readonly cookie = inject(CookieService)
+  private readonly router = inject(Router)
+
 
   id:string|null=null;
   productDetails:Products={} as Products
@@ -57,7 +61,6 @@ export class DetailsComponent implements OnInit {
   getProductDataDetails():void{
     this.productDetailsService.getProductDetails(this.id).subscribe({
       next:(res)=>{
-        console.log(res.data)
         this.productDetails=res.data;
 
          if (this.productDetails.images && Array.isArray(this.productDetails.images)) {
@@ -70,7 +73,6 @@ export class DetailsComponent implements OnInit {
         }
       },
       error:(err)=>{
-        console.log(err);
       }
 
 
@@ -79,23 +81,25 @@ export class DetailsComponent implements OnInit {
 
 
   AddItemToCart(id:string):void{
+    if(this.cookie.get('token')){
     this.cartService.addProductToCart(id).subscribe({
       next:(res)=>{
-        console.log(res);
-               if(res.status === "success"){
-        this.toastr.success(res.message,"Fresh Cart")
+        if(res.status === "success"){
+        this.toast.success(res.message,"Fresh Cart")
       }
 
 
       },
       error:(err)=>{
-        console.log(err);
-                        this.toastr.error('Failed Request',"Fresh Cart")
-
-
-
+        this.toast.error('Failed Request',"Fresh Cart")
       }
     })
+  }
+  else{
+            this.toast.error('You Must Login First',"Fresh Cart")
+
+    this.router.navigate(['/login']);
+  }
 
   }
 }

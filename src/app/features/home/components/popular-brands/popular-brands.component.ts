@@ -60,7 +60,6 @@ getBrands():void{
 
     },
     error:(err)=>{
-      console.log(err);
 
     }
   })

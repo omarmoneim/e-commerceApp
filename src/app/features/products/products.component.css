@@ -1,3 +1,4 @@
 ::ng-deep .p-paginator{
   background: var(--section-color) !important;
+  margin-top: 18px;
 }

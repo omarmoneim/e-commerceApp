@@ -11,7 +11,7 @@ import { Component, inject, OnInit } from '@angular/core';
 })
 export class WishListComponent implements OnInit{
   private readonly wishlistService =inject(WishlistService)
-  private readonly toastr=inject( ToastrService)
+  private readonly toast=inject( ToastrService)
   userWishlist:Wishlist[]=[]
 
 
@@ -21,12 +21,10 @@ ngOnInit(): void {
   getLoggedUserWishlist():void{
     this.wishlistService.getLoggedUserWishlist().subscribe({
       next:(res)=>{
-        console.log(res.data);
         this.userWishlist = res.data
 
       },
       error:(err)=>{
-        console.log(err);
 
       }
     })
@@ -35,15 +33,13 @@ ngOnInit(): void {
   removeItemFromWishList(id:string):void{
     this.wishlistService.deleteProductFromWishlist(id).subscribe({
       next:(res)=>{
-        console.log(res);
-          this.toastr.warning("You Removed This Product From WishList","Fresh Cart")
+          this.toast.warning("You Removed This Product From WishList","Fresh Cart")
         this.userWishlist=res.data
 
 
 
       },
       error:(err)=>{
-        console.log(err);
 
 
       }

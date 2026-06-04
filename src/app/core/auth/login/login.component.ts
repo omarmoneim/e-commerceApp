@@ -52,13 +52,11 @@ submitForm():void{
     //? LOGIC call API
   this.subscription = this.authserviceService.loginForm(this.loginForm.value).subscribe({
       next:(res)=>{
-        console.log(res);
         if(res.message==="success"){
         this.errMessage="";
         this.successMessage =res.message ;
         this.cookieService.set('token' , res.token)
         //! UserID Logic
-        console.log( this.authserviceService.decodeToken().id);
         this.cookieService.set('userId' , this.authserviceService.decodeToken().id)
 
 
@@ -73,7 +71,6 @@ submitForm():void{
         this.isLoading=false;
       },
       error:(err)=>{
-       console.log(err.error.message);
        this.errMessage = err.error.message
        this.isLoading=false;
       }

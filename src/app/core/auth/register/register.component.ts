@@ -68,14 +68,12 @@ confirmPassword(group:AbstractControl){
 }
 
 submitForm():void{
-  console.log(this.registerForm)
   if(this.registerForm.valid){
     this.subscription.unsubscribe()
     this.isLoading = true;
     //? LOGIC call API
   this.subscription=  this.authserviceService.registerForm(this.registerForm.value).subscribe({
       next:(res)=>{
-        console.log(res);
         if(res.message==="success"){
         this.errMessage="";
         this.successMessage =res.message ;
@@ -91,7 +89,6 @@ submitForm():void{
         this.isLoading=false;
       },
       error:(err)=>{
-       console.log(err.error.message);
        this.errMessage = err.error.message
        this.isLoading=false;
       }

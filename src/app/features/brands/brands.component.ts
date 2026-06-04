@@ -33,13 +33,11 @@ export class BrandsComponent implements OnInit {
   getAllBrands(page:number=1):void{
     this.brandsService.getAllBrands(page).subscribe({
       next:(res)=>{
-        console.log(res)
         this.popularBrands=res.data
         this.rows=res.metadata.limit
         this.totalRecords=res.results
       },
       error:(err)=>{
-        console.log(err)
       }
     })     
 }

@@ -33,7 +33,6 @@ getAllUserOrders(): void {
       next: (res: Allorders[]) => {
         this.UserOrder = res;
       },
-      error: (err) => console.log(err)
     });
   }
 

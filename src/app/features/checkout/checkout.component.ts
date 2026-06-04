@@ -45,13 +45,13 @@ export class CheckoutComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe({
       next:(urlParams)=>{
         this.id= urlParams.get('id')
-        console.log(this.id);
+        (this.id);
 
 
 
       },
       error:(err)=>{
-        console.log();
+        ();
 
 
       }
@@ -60,19 +60,19 @@ export class CheckoutComponent implements OnInit {
 
   submitFormCash():void{
     if(this.checkoutForm.valid){
-      console.log(this.checkoutForm.value);
+      (this.checkoutForm.value);
       this.isCash=true
-      console.log("From cash");
+      ("From cash");
       this.cartService.checkoutCashSession(this.id,this.checkoutForm.value).subscribe({
         next:(res)=>{
-            console.log(res)
+            (res)
             if(res.status =='success'){
               this.router.navigate(['/allorders'])
               }
 
         },
         error:(err)=>{
-          console.log(err);
+          (err);
 
 
         }
@@ -80,7 +80,7 @@ export class CheckoutComponent implements OnInit {
 
 
     }else{
-      console.log('ERROR FROM CHECK FORM');
+      ('ERROR FROM CHECK FORM');
 
     }
 
@@ -88,13 +88,13 @@ export class CheckoutComponent implements OnInit {
   }
   submitFormVisa():void{
     if(this.checkoutForm.valid){
-      console.log(this.checkoutForm.value);
+      (this.checkoutForm.value);
             this.isVisa=true
             this.isLoading =true
-            console.log("From visa");
+            ("From visa");
             this.cartService.checkoutSession(this.id,this.checkoutForm.value).subscribe({
               next:(res)=>{
-               console.log(res);
+               (res);
                if(res.status =='success'){
                this.isLoading =false
                window.open(res.session.url,'_self')
@@ -102,14 +102,14 @@ export class CheckoutComponent implements OnInit {
               },
               error:(err)=>{
 
-                console.log(err);
+                (err);
 
               }
             })
 
 
     }else{
-      console.log('ERROR FROM visa FORM');
+      ('ERROR FROM visa FORM');
 
     }
 

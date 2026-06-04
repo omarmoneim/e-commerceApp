@@ -12,7 +12,7 @@ subscribe & get <span class="text-red-500"> %10 off</span> for your first order 
 <form >
   <div class="ourInput md:flex items-center mb-5">
      <p-floatlabel class="mb-2 md:grow">
-        <input  class="w-full" pInputText id="over_label" [(ngModel)]="value1" autocomplete="off" />
+        <input  class="w-full" pInputText id="over_label" name="Email" [(ngModel)]="value1" autocomplete="off" />
         <label for="over_label">Email..</label>
     </p-floatlabel>
 
@@ -26,10 +26,10 @@ subscribe & get <span class="text-red-500"> %10 off</span> for your first order 
       <h2 class="font-bold uppercase text-[16px]  me-2 mb-3">payment partners</h2>
 
       <div class=" flex justify-between items-center w-[50%] mb-3 ">
-      <img src="/images/amazon-pay.png" width="60px" class="me-2" alt="amazon">
-      <img src="/images/American-Express-Color.png"  width="60px"  class=" me-2" alt="american express">
-      <img src="/images/paypal.png"  width="60px"  class=" me-2" alt=" paypal">
-      <img src="/images/mastercard.webp"  width="60px"  class=" me-2" alt=" mastercard">
+      <img src="/images/amazon-pay.png" width="60px" class="me-2" loading="lazy" alt="amazon">
+      <img src="/images/American-Express-Color.png"  width="60px" loading="lazy"  class=" me-2" alt="american express">
+      <img src="/images/paypal.png"  width="60px"  class=" me-2"loading="lazy" alt=" paypal">
+      <img src="/images/mastercard.webp"  width="60px" loading="lazy"  class=" me-2" alt=" mastercard">
       </div>
     </div>
 
@@ -38,8 +38,8 @@ subscribe & get <span class="text-red-500"> %10 off</span> for your first order 
       <h2 class="font-bold uppercase text-[16px]  me-2 mb-3"> get delivers with fresh cart</h2>
 
       <div class=" flex justify-between items-center w-[40%] mb-3">
-      <img src="/images/get-apple-store.png" width="100px" class=" me-3" alt="apple store">
-      <img src="/images/get-google-play.png"  width="120px"   alt="google play">
+      <img src="/images/get-apple-store.png" loading="lazy" width="100px" class=" me-3" alt="apple store">
+      <img src="/images/get-google-play.png" loading="lazy" width="120px"   alt="google play">
 
       </div>
 

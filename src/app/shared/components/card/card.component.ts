@@ -5,8 +5,8 @@ import { Tag } from 'primeng/tag';
 import { Products } from '../../../core/models/products.interface';
 import { RouterLink } from "@angular/router";
 import { CartService } from '../../../features/cart/services/cart.service';
-import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from '../../../features/wish-list/services/wishlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -22,7 +22,7 @@ export class CardComponent  {
 
 
   private readonly cartService = inject(CartService)
-  private readonly toastr=inject( ToastrService)
+   private readonly toast=inject( ToastrService)
   private readonly wishlistService =inject(WishlistService)
 
 
@@ -38,14 +38,13 @@ addProductsToCart(id:string):void{
     next:(res)=>{
       this.cartService.countNumber.next(res.numOfCartItems) ;
       if(res.status === "success"){
-        this.toastr.success(res.message,"Fresh Cart")
+        this.toast.success(res.message,"Fresh Cart")
       }
 
 
     },
     error:(err)=>{
-      console.log(err);
-      this.toastr.error("Failed Request","Fresh Cart")
+      this.toast.error("Failed Request","Fresh Cart")
 
 
 
@@ -57,16 +56,14 @@ addProductsToCart(id:string):void{
 addMyProductTowishlist(id:string):void{
   this.wishlistService.addProductToWishlist(id).subscribe({
     next:(res)=>{
-      console.log(res);
       if(res.status ==="success"){
-        this.toastr.show(res.message)
+        this.toast.success(res.message)
 
       }
 
     },
     error:(err)=>{
-      console.log(err);
-              this.toastr.error("Failed Request","Fresh Cart")
+              this.toast.error("Failed Request","Fresh Cart")
 
 
 

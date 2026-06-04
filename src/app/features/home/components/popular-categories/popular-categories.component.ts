@@ -17,8 +17,7 @@ export class PopularCategoriesComponent implements OnInit{
 
 
 
-
-    categoriesOptions: OwlOptions = {
+   brandsOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -29,27 +28,28 @@ export class PopularCategoriesComponent implements OnInit{
     autoplay:true,
     autoplayTimeout:2500,
     animateIn:true,
-    items:1,
+    margin:8,
     navText: ['', ''],
     responsive: {
       0: {
         items: 2
       },
       380: {
-        items: 3
+        items: 2
       },
       450: {
-        items: 4
+        items: 3
       },
       740: {
-        items: 5
+        items: 4
       },
       940: {
-        items: 6
+        items: 5
       }
     },
-    nav: true
+    nav: false
   }
+  
 
   ngOnInit(): void {
     this.getAllCategories()
@@ -60,7 +60,6 @@ export class PopularCategoriesComponent implements OnInit{
         this.categoryList=res.data
       },
       error:(err)=>{
-        console.log(err)
       }
     })
   }

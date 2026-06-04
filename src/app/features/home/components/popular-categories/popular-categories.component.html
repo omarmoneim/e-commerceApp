@@ -1,43 +1,48 @@
-<section class="header w-[80%] mb-4 p-4 rounded-2xl shadow-xl" style="background-color: #1ABA1A;">
+
+ <section class="ads2 bg-white mb-3.5  rounded-2xl h-32 lg:h-52 ">
+
+ </section>
+
+ <main>
+   <section class="header w-[80%] mb-4 p-4 rounded-2xl shadow-xl" style="background-color: #1ABA1A;">
        <h2
     class="uppercase mb-3 font-semibold tracking-widest text-[16px] underline underline-offset-4 decoration-3 decoration-lime-400 "
     style="color: white;"
   >
         Popular Categories
-
-
   </h2>
 </section>
 
 
-<main class="parent mb-4">
-     <section class=" main-category bg-white mb-3.5 px-3 pt-4 rounded-2xl shadow-2xs">
 
 
-   <owl-carousel-o [options]="categoriesOptions">
+<section class="parent mb-4 bg-white py-10 px-5 rounded-2xl">
+  
+ <owl-carousel-o [options]="brandsOptions">
+        @for (category of categoryList; track category._id) {
+      <ng-template carouselSlide [id]="category._id">
 
-    @for (category of categoryList; track category._id) {
-      <ng-template carouselSlide [id]="category._id" >
-        <div >
-        <img [src]="category.image"  [alt]="category.name"  class="w-[100px] h-[150px] mx-auto ">
-        <h5 class="text-shadow-black font-extrabold tracking-normal text-[12px] ms-2 shadow-2xs line-clamp-1 lg:line-clamp-none">{{category.name}}</h5>
+        <div  class=" border  border-surface-400 bg-white shadow-lg  dark:border-surface-700 rounded-xl mx-1.5 pb-2  overflow-hidden group ">
+        <img [src]="category.image" loading="lazy" class="   w-42 h-32 lg:h-42  " [alt]="category.name" >
+        <h5 class="text-shadow-black font-extrabold tracking-normal  text-[16px] ms-2 mb-3.5 line-clamp-1 lg:line-clamp-0 ">{{category.name}}</h5>
         </div>
-      </ng-template>
 
-    }
+      </ng-template>
+              }
+
+    
 
   </owl-carousel-o>
 
 
- </section>
+</section>
 
- <section class="ads1  mb-3.5  rounded-2xl ">
+ </main>
 
- </section>
-
- <section class="ads2 bg-white mb-3.5  rounded-2xl ">
+<section class="ads1  mb-3.5  rounded-2xl h-32 lg:h-52 ">
 
  </section>
 
-</main>
+
+ 
 

@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from './services/cart.service';
 import { Cart } from './models/cart.interface';
-import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from "@angular/router";
+import { CookieService } from 'ngx-cookie-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,10 @@ import { RouterLink } from "@angular/router";
 export class CartComponent implements OnInit{
 
   private readonly cartService =inject(CartService)
-  private readonly toastr=inject( ToastrService)
+   private readonly toastr=inject( ToastrService)
+  
+
+  private readonly cookieService = inject(CookieService)
 
 
 userCartData:Cart={} as Cart
@@ -24,31 +28,31 @@ ngOnInit(): void {
 }
 
 getLoggedUserCart():void{
-  this.cartService.getLoggedUserCart().subscribe({
+  if(this.cookieService.get('token')){
+     this.cartService.getLoggedUserCart().subscribe({
     next:(res)=>{
-      console.log(res);
-      console.log(res.data)
+     
         this.userCartData =res.data
 
     },
 
     error:(err)=>{
-console.log(err)
     }
   })
+
+  }
+ 
 }
 
 removeItem(id:string):void{
   this.cartService.removeOneItem(id).subscribe({
     next:(res)=>{
         this.cartService.countNumber.next(res.numOfCartItems) ;
-      console.log(res);
               this.userCartData =res.data
               this.toastr.warning("You Removed This Product From Cart","Fresh Cart")
 
     },
     error:(err)=>{
-      console.log(err);
 
 
     }
@@ -58,7 +62,6 @@ removeItem(id:string):void{
 updateCounter(id:string,count:number):void{
   this.cartService.updateCount(id,count).subscribe({
     next:(res)=>{
-      console.log(res);
       this.userCartData =res.data
         this.toastr.info( "Item Updated !!! " , "Fresh Cart")
 
@@ -66,7 +69,6 @@ updateCounter(id:string,count:number):void{
 
     },
     error:(err)=>{
-console.log(err);
 
     }
   })

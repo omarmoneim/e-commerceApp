@@ -21,7 +21,6 @@ export class CategoriesComponent implements OnInit {
      getAllCategories():void{
       this.categoriesService.getAllCategories().subscribe({
         next:(res)=>{
-          console.log(res.data)
           this.categories=res.data
 
 

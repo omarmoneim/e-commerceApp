@@ -76,7 +76,6 @@ this.cartService.getLoggedUserCart().subscribe({
   clickOutside(event: MouseEvent) {
     if (!this.isBrowser) return;
     const clickedInside = this.eRef.nativeElement.contains(event.target);
-    console.log(clickedInside)
     if (!clickedInside && this.sidebarOpen) {
       this.sidebarOpen = false;
     }

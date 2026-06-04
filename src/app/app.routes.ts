@@ -14,28 +14,28 @@ export const routes: Routes = [
     canActivate: [isLoggedGuard],
     loadComponent: () =>
       import('./core/layouts/auth-layout/auth-layout.component')
-        .then(m => m.AuthLayoutComponent),
+        .then(c => c.AuthLayoutComponent),
 
     children: [
       {
         path: 'login',
         loadComponent: () =>
           import('./core/auth/login/login.component')
-            .then(m => m.LoginComponent),
+            .then(c => c.LoginComponent),
         title: 'login page'
       },
       {
         path: 'register',
         loadComponent: () =>
           import('./core/auth/register/register.component')
-            .then(m => m.RegisterComponent),
+            .then(c => c.RegisterComponent),
         title: 'register page'
       },
       {
         path: 'forget',
         loadComponent: () =>
           import('./core/auth/forget-password/forget-password.component')
-            .then(m => m.ForgetPasswordComponent),
+            .then(c => c.ForgetPasswordComponent),
         title: 'forget password page'
       }
     ]
@@ -48,21 +48,21 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./core/layouts/blank-layout/blank-layout.component')
-        .then(m => m.BlankLayoutComponent),
+        .then(c => c.BlankLayoutComponent),
 
     children: [
       {
         path: 'home',
         loadComponent: () =>
           import('./features/home/home.component')
-            .then(m => m.HomeComponent),
+            .then(c => c.HomeComponent),
         title: 'home'
       },
       {
         path: 'products',
         loadComponent: () =>
           import('./features/products/products.component')
-            .then(m => m.ProductsComponent),
+            .then(c => c.ProductsComponent),
         canActivate: [authGuardGuard],
         title: 'products'
       },
@@ -70,7 +70,7 @@ export const routes: Routes = [
         path: 'brands',
         loadComponent: () =>
           import('./features/brands/brands.component')
-            .then(m => m.BrandsComponent),
+            .then(c => c.BrandsComponent),
         canActivate: [authGuardGuard],
         title: 'brands'
       },
@@ -78,7 +78,7 @@ export const routes: Routes = [
         path: 'cart',
         loadComponent: () =>
           import('./features/cart/cart.component')
-            .then(m => m.CartComponent),
+            .then(c => c.CartComponent),
         canActivate: [authGuardGuard],
         title: 'cart'
       },
@@ -86,30 +86,30 @@ export const routes: Routes = [
         path: 'details/:slug/:id',
         loadComponent: () =>
           import('./features/details/details.component')
-            .then(m => m.DetailsComponent),
-        canActivate: [authGuardGuard],
+            .then(c => c.DetailsComponent),
+        //  canActivate: [authGuardGuard],
         title: 'details'
       },
       {
         path: 'details/:id',
         loadComponent: () =>
           import('./features/details/details.component')
-            .then(m => m.DetailsComponent),
-        canActivate: [authGuardGuard],
+            .then(c => c.DetailsComponent),
+        //  canActivate: [authGuardGuard],
         title: 'details'
       },
       {
         path: 'checkout/:id',
         loadComponent: () =>
           import('./features/checkout/checkout.component')
-            .then(m => m.CheckoutComponent),
+            .then(c => c.CheckoutComponent),
         title: 'checkout'
       },
       {
         path: 'wishlist',
         loadComponent: () =>
           import('./features/wish-list/wish-list.component')
-            .then(m => m.WishListComponent),
+            .then(c => c.WishListComponent),
         canActivate: [authGuardGuard],
         title: 'wishlist'
       },
@@ -117,7 +117,7 @@ export const routes: Routes = [
         path: 'categories',
         loadComponent: () =>
           import('./features/categories/categories.component')
-            .then(m => m.CategoriesComponent),
+            .then(c => c.CategoriesComponent),
         canActivate: [authGuardGuard],
         title: 'categories'
       },
@@ -125,7 +125,7 @@ export const routes: Routes = [
         path: 'allorders',
         loadComponent: () =>
           import('./features/allorders/allorders.component')
-            .then(m => m.AllordersComponent),
+            .then(c => c.AllordersComponent),
             canActivate: [authGuardGuard],
         title: 'all orders'
       }
@@ -139,7 +139,7 @@ export const routes: Routes = [
     path: '**',
     loadComponent: () =>
       import('./features/notfound/notfound.component')
-        .then(m => m.NotfoundComponent),
+        .then(c => c.NotfoundComponent),
     title: 'Page Not Found'
   }
 ];

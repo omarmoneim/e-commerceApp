@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 
@@ -15,7 +15,7 @@ export class MainSectionComponent {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
-    autoHeight:true,
+    autoHeight:false,
     pullDrag: false,
     dots: true,
     autoplayHoverPause:true,

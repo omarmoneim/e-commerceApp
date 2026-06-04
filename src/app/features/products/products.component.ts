@@ -42,7 +42,6 @@ export class ProductsComponent implements OnInit  {
   getListOfProducts(page:number = 1):void{
     this.productsService.getAllProducts(page).subscribe({
       next:(res)=>{
-        console.log(res)
         this.listOfProducts=res.data
         this.rows=res.metadata.limit
         this.totalRecords=res.results
@@ -51,7 +50,6 @@ export class ProductsComponent implements OnInit  {
 
       },
       error:(err)=>{
-        console.log(err);
 
       }
     }

@@ -52,7 +52,6 @@ private readonly router = inject(Router)
     if(this.verifyEmail.valid){
       this.authserviceService.submitVerifyEmail(this.verifyEmail.value).subscribe({
       next:(res)=>{
-        console.log(res)
         this.submitted = true;
         this.step = 2;
       }
@@ -65,7 +64,6 @@ private readonly router = inject(Router)
     if(this.verifyCode.valid){
       this.authserviceService.submitVerifyResetCode(this.verifyCode.value).subscribe({
       next:(res)=>{
-        console.log(res)
           this.resetPassword.patchValue({
           email: this.verifyEmail.get('email')?.value
         });
@@ -81,7 +79,6 @@ private readonly router = inject(Router)
     if(this.resetPassword.valid){
       this.authserviceService.submitVerifyResetPassword(this.resetPassword.value).subscribe({
       next:(res)=>{
-        console.log(res)
         this.cookieService.set('token',res.token)
         this.router.navigate(['/home'])
       }
