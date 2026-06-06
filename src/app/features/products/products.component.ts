@@ -5,6 +5,7 @@ import { CardComponent } from "../../shared/components/card/card.component";
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { SearchPipe } from '../../shared/pipes/search-pipe';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -15,10 +16,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit  {
+  private readonly route = inject(ActivatedRoute);
   private readonly productsService = inject(ProductsService);
   listOfProducts :Products[]=[]
-
   searchText:string=''
+
 
   first: number = 0;
   rows: number = 10;
@@ -33,7 +35,15 @@ export class ProductsComponent implements OnInit  {
     }
 
   ngOnInit(): void {
-    this.getListOfProducts();
+    this.route.paramMap.subscribe(params => {
+    const id = params.get('id');
+
+    if (id) {
+      this.getProductsByCategory(id);
+    } else {
+      this.getListOfProducts();
+    }
+  });
 
 
   }
@@ -54,6 +64,17 @@ export class ProductsComponent implements OnInit  {
       }
     }
     )
+  }
+
+    getProductsByCategory(categoryId: string): void {
+    this.productsService.getProductsByCategory(categoryId).subscribe({
+      next: (res) => {
+        this.listOfProducts = res.data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
 

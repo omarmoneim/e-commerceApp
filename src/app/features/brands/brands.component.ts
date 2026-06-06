@@ -3,6 +3,7 @@ import { BrandsService } from '../../core/services/brands/brands.service';
 import { Brands } from '../../core/models/brands.interface';
 import { PaginatorState, Paginator } from 'primeng/paginator';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-brands',
@@ -12,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class BrandsComponent implements OnInit {
 
+    private readonly router = inject(Router)
   private readonly brandsService = inject(BrandsService);
     popularBrands:Brands[]=[]
     first: number = 0;
@@ -41,5 +43,6 @@ export class BrandsComponent implements OnInit {
       }
     })     
 }
+
 }
 

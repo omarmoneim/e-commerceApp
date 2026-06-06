@@ -9,17 +9,17 @@ background: linear-gradient(90deg, rgba(26, 186, 26, 1) 50%, rgb(0, 46, 30) 100%
 </section>
 
 <section class="p-6 bg-white my-5 w-[95%] m-auto rounded-2xl">
-    <div class=" grid gap-2 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6 ">
-
-
+    <div class=" py-3 shadow-lg grid gap-4 bg-white grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6 ">
   @for (category of categories; track category._id) {
-    <div  class=" card border border-surface-400 dark:border-surface-700 rounded-3xl mx-1.5 p-2 pt-6 overflow-hidden group ">
+    <div  (click)="goToCategory(category._id)"  onkeypress=""
+    class="cursor-pointer card border border-surface-200 dark:border-surface-400  rounded-sm mx-1.5 p-2 pt-6 overflow-hidden group shadow-sm">
             <!-- ? img and icons  -->
           <div class="mb-1 border-b-2 border-gray-50  transition-all duration-800 group-hover:scale-[1.01]  ">
             <div class="relative mx-auto">
             <img
               [src]="category.image"
               [alt]="category.name"
+              loading="lazy"
               class=" mx-auto rounded-border w-[120px] h-[120px] object-fill "
             />
         
@@ -27,15 +27,16 @@ background: linear-gradient(90deg, rgba(26, 186, 26, 1) 50%, rgb(0, 46, 30) 100%
              </div>
 
         <!-- ~ title and discretion -->
-        <h6 class="capitalize text-[14px] font-semibold ps-1" style="color: #1aba1a;">{{category.name}}</h6>
+        <h6 class="capitalize text-[14px] font-semibold ps-1 line-clamp-1 lg:line-clamp-0 " style="color: #1aba1a;">{{category.name}}</h6>
             </div>
  
     }
 
 
       </div>
-
 </section>
+
+
 
 
 

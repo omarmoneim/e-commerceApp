@@ -74,8 +74,8 @@
 
 
           <div class="flex justify-between items-center  group-hover:transition-all duration-500  pt-3">
-              <button name="wishlist" (click)="addMyProductTowishlist(product.id)" class="  px-4 py-1 w-12 h-12 rounded-full  bg-red-300 me-1 cursor-pointer hover:bg-red-900 hover:grow transition-all duration-500 "><i class="pi pi pi-heart text-white "></i></button>
-              <button name="wishlist" (click)="addToCart(product.id)"  class="addCart w-12 h-12 rounded-full  px-4 py-1 text-white bg-gray-500 hover:bg-green-900 hover:grow transition-all duration-500 "><i class="pi pi-shopping-cart text-white" style="size: 1.2rem;"> </i> </button>
+              <button name="wishlist" aria-label="wishlist" (click)="addMyProductTowishlist(product.id)" class="  px-4 py-1 w-12 h-12 rounded-full  bg-red-300 me-1 cursor-pointer hover:bg-red-900 hover:grow transition-all duration-500 "><i class="pi pi pi-heart text-white "></i></button>
+              <button name="cart" aria-label="cart" (click)="addToCart(product.id)"  class="addCart w-12 h-12 rounded-full  px-4 py-1 text-white bg-gray-500 hover:bg-green-900 hover:grow transition-all duration-500 "><i class="pi pi-shopping-cart text-white" style="size: 1.2rem;"> </i> </button>
             </div>
 
       </div>

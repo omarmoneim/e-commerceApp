@@ -7,10 +7,6 @@ import { RouterLink } from "@angular/router";
 import { CartService } from '../../../features/cart/services/cart.service';
 import { WishlistService } from '../../../features/wish-list/services/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
-
-
-
-
 @Component({
   selector: 'app-card',
    imports: [CardModule, ButtonModule, Tag, RouterLink],
@@ -22,17 +18,12 @@ export class CardComponent  {
 
 
   private readonly cartService = inject(CartService)
-   private readonly toast=inject( ToastrService)
+  private readonly toast=inject( ToastrService)
   private readonly wishlistService =inject(WishlistService)
 
 
 
   @Input({required:true}) product:Products={} as Products
-
-
-
-
-
 addProductsToCart(id:string):void{
   this.cartService.addProductToCart(id).subscribe({
     next:(res)=>{
@@ -40,15 +31,9 @@ addProductsToCart(id:string):void{
       if(res.status === "success"){
         this.toast.success(res.message,"Fresh Cart")
       }
-
-
     },
     error:(err)=>{
       this.toast.error("Failed Request","Fresh Cart")
-
-
-
-
     }
   })
 }
@@ -58,15 +43,11 @@ addMyProductTowishlist(id:string):void{
     next:(res)=>{
       if(res.status ==="success"){
         this.toast.success(res.message)
-
       }
 
     },
     error:(err)=>{
               this.toast.error("Failed Request","Fresh Cart")
-
-
-
     }
   })
 }

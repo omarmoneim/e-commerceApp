@@ -19,11 +19,16 @@
 <section class="parent mb-4 bg-white py-10 px-5 rounded-2xl">
   
  <owl-carousel-o [options]="brandsOptions">
-        @for (category of categoryList; track category._id) {
+      @for (category of categoryList; track category._id) {
       <ng-template carouselSlide [id]="category._id">
 
-        <div  class=" border  border-surface-400 bg-white shadow-lg  dark:border-surface-700 rounded-xl mx-1.5 pb-2  overflow-hidden group ">
-        <img [src]="category.image" loading="lazy" class="   w-42 h-32 lg:h-42  " [alt]="category.name" >
+        
+        <div  class=" border border-surface-100 bg-white shadow-lg dark:border-surface-300 rounded-sm mx-1.5 pb-2  overflow-hidden group ">
+        <div class="p-3">
+                    <img [src]="category.image" loading="lazy" class="   w-42 h-32 lg:h-42  " [alt]="category.name" >
+
+
+        </div>
         <h5 class="text-shadow-black font-extrabold tracking-normal  text-[16px] ms-2 mb-3.5 line-clamp-1 lg:line-clamp-0 ">{{category.name}}</h5>
         </div>
 

@@ -10,12 +10,12 @@ export class ProductsService {
 
   private readonly httpClient=inject(HttpClient);
 
-  getAllProducts(page:number=1 ,categoryId?:string):Observable<any>{
+  getAllProducts(page:number=1 ):Observable<any>{
     return this.httpClient.get(environment.baseUrl + `products?page=${page}`)
   }
 
-  getProductsByCategory(categoryId: string) {
-  return this.httpClient.get(environment.baseUrl +`products?category=${categoryId}`
+  getProductsByCategory(categoryId: string):Observable<any> {
+  return this.httpClient.get(environment.baseUrl +`products?category[in]=${categoryId}`
   );
 }
 

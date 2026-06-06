@@ -128,7 +128,14 @@ export const routes: Routes = [
             .then(c => c.AllordersComponent),
             canActivate: [authGuardGuard],
         title: 'all orders'
-      }
+      },
+      { path: 'products/:id', 
+        loadComponent: () =>
+          import('./features/products/products.component')
+            .then(c => c.ProductsComponent),
+        //  canActivate: [authGuardGuard],
+        title: 'product'
+       }
     ]
   },
 

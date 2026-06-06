@@ -7,6 +7,8 @@
           [formControl]="control"
           [id]="inputId"
           [readonly]="readonly"
+          [name]="LabelInput"
+          [aria-label]="LabelInput"
           
           autocomplete="off" ></textarea>
 
@@ -23,6 +25,8 @@
           [formControl]="control"
           [type]="inputType || (flagPassword ? 'password' : 'text')"
           [id]="inputId"
+          [name]="LabelInput"
+          [aria-label]="LabelInput"
           [readonly]="readonly"
           autocomplete="off" />
         <label [for]="inputId">{{LabelInput}}</label>

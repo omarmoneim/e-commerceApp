@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { Categories } from '../../core/models/categories.interface';
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-categories',
@@ -11,8 +13,9 @@ import { Categories } from '../../core/models/categories.interface';
 export class CategoriesComponent implements OnInit {
 
   private readonly categoriesService = inject(CategoriesService)
-    categories:Categories[]=[]
-    listOfProducts :any
+  private readonly router = inject(Router)
+  categories:Categories[]=[]
+
 
      ngOnInit(): void {
       this.getAllCategories();
@@ -24,12 +27,15 @@ export class CategoriesComponent implements OnInit {
           this.categories=res.data
 
 
-        }
+        },
+        error:(err)=>{
+        }     
       })
      }
 
-  
-
+    goToCategory(id: string): void {
+    this.router.navigate(['/products', id]);
+  }
 
 
 }
