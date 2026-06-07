@@ -18,8 +18,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit  {
   private readonly route = inject(ActivatedRoute);
   private readonly productsService = inject(ProductsService);
+  isSignal:boolean=false
   listOfProducts =signal<Products[]>([])
-    listOfProductsCount = computed(()=>this.listOfProducts.length)
+  productList:Products[]=[]
+  listOfProductsCount = computed(()=>this.listOfProducts.length)
   constructor(){
     effect(()=>console.log(this.listOfProductsCount))
   }
@@ -56,15 +58,12 @@ export class ProductsComponent implements OnInit  {
   getListOfProducts(page:number = 1):void{
     this.productsService.getAllProducts(page).subscribe({
       next:(res)=>{
+                this.isSignal=true
         this.listOfProducts.set(res.data)
         this.rows=res.metadata.limit
         this.totalRecords=res.results
-
-
-
       },
       error:(err)=>{
-
       }
     }
     )
@@ -73,7 +72,10 @@ export class ProductsComponent implements OnInit  {
     getProductsByCategory(categoryId: string): void {
     this.productsService.getProductsByCategory(categoryId).subscribe({
       next: (res) => {
-        this.listOfProducts = res.data;
+                this.isSignal=false
+
+        console.log(res)
+        this.productList = res.data;
       },
       error: (err) => {
         console.log(err);

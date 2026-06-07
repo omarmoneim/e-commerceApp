@@ -29,10 +29,8 @@ background: linear-gradient(90deg, rgba(26, 186, 26, 1) 50%, rgb(0, 46, 30) 100%
   </div>
 </section>
 
-
-
-
-<section class=" p-6 bg-white my-5 w-[95%] m-auto rounded-2xl">
+@if (isSignal) {
+  <section class=" p-6 bg-white my-5 w-[95%] m-auto rounded-2xl">
   <div class=" grid gap-3 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6 ">
     @for (product of listOfProducts()|search:searchText; track product.id) {
           <app-card [product]="product"></app-card>
@@ -45,4 +43,25 @@ background: linear-gradient(90deg, rgba(26, 186, 26, 1) 50%, rgb(0, 46, 30) 100%
 </div>
 
 </section>
+
+}
+@else if (isSignal==false)  {
+  <section class=" p-6 bg-white my-5 w-[95%] m-auto rounded-2xl">
+  <div class=" grid gap-3 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6 ">
+    @for (product of productList|search:searchText; track product.id) {
+          <app-card [product]="product"></app-card>
+      }
+  </div>
+
+<div class="card flex justify-center">
+
+<p-paginator  (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"  />
+</div>
+
+</section>
+
+}
+
+
+
 
