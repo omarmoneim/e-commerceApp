@@ -40,6 +40,7 @@ A modern and scalable E-Commerce web application built with Angular, focusing on
 * Lazy Loading
 * Optimized Performance
 * Reusable Component
+* Signals
 
 ### UI/UX
 
