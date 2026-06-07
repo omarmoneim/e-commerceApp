@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { CategoriesService } from '../../../../core/services/categories/categories.service';
 import { Category } from '../../../../core/models/products.interface';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
@@ -12,9 +12,13 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class PopularCategoriesComponent implements OnInit{
   private readonly categoriesService =inject(CategoriesService);
-  categoryList:Category[]=[]
+  categoryList=signal< Category[]>([])
 
+categoryListCount = computed(()=>this.categoryList.length)
 
+  constructor(){
+    effect(()=>console.log(this.categoryListCount))
+  }
 
 
    brandsOptions: OwlOptions = {
@@ -57,7 +61,7 @@ export class PopularCategoriesComponent implements OnInit{
   getAllCategories():void{
     this.categoriesService.getAllCategories().subscribe({
       next:(res)=>{
-        this.categoryList=res.data
+        this.categoryList.set(res.data)
       },
       error:(err)=>{
       }

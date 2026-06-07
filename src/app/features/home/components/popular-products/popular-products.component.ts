@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { Carousel } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { Tag } from 'primeng/tag';
@@ -20,10 +20,16 @@ export class PopularProductsComponent implements OnInit {
    private readonly productsService = inject(ProductsService);
    private readonly cartService =inject(CartService)
    private readonly wishlistService =inject(WishlistService)
-         private readonly toast=inject( ToastrService)
+      private readonly toast=inject( ToastrService)
 
 
-  productsList:Products[]=[];
+  productsList=signal<Products[]>([]);
+
+    productsListCount = computed(()=>this. productsList.length)
+  constructor(){
+    effect(()=>console.log(this. productsListCount))
+  }
+
   responsiveOptions: any[] | undefined;
 
   ngOnInit(): void {
@@ -65,7 +71,7 @@ export class PopularProductsComponent implements OnInit {
 getProducts():void{
   this.productsService.getAllProducts().subscribe({
     next:(res)=>{
-       this.productsList = res.data
+       this.productsList.set(res.data)
     },
   })
 }

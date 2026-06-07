@@ -19,7 +19,7 @@
 <section class="parent mb-4 bg-white py-10 px-5 rounded-2xl">
   
  <owl-carousel-o [options]="brandsOptions">
-      @for (category of categoryList; track category._id) {
+      @for (category of categoryList(); track category._id) {
       <ng-template carouselSlide [id]="category._id">
 
         

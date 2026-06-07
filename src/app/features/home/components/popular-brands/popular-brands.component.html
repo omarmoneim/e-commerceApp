@@ -12,7 +12,7 @@
 <section class="mb-6 bg-white p-8 shadow-2xl rounded-2xl">
   <owl-carousel-o [options]="brandsOptions">
 
-    @for (brand of popularBrands.slice(0,20); track brand._id) {
+    @for (brand of popularBrands().slice(0,20); track brand._id) {
       <ng-template carouselSlide [id]="brand._id">
         <div  class=" border  border-surface-200  shadow-lg  dark:border-surface-700 rounded-xl mx-1.5 pb-2  overflow-hidden group ">
         <img [src]="brand.image" loading="lazy" class="w-full h-[30%] border border-b-2 border-gray-100" [alt]="brand.name" >

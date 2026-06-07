@@ -63,7 +63,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/products/products.component')
             .then(c => c.ProductsComponent),
-        canActivate: [authGuardGuard],
+       // canActivate: [authGuardGuard],
         title: 'products'
       },
       {
@@ -71,7 +71,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/brands/brands.component')
             .then(c => c.BrandsComponent),
-        canActivate: [authGuardGuard],
+       // canActivate: [authGuardGuard],
         title: 'brands'
       },
       {

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { Categories } from '../../core/models/categories.interface';
 import { Router } from "@angular/router";
@@ -14,7 +14,13 @@ export class CategoriesComponent implements OnInit {
 
   private readonly categoriesService = inject(CategoriesService)
   private readonly router = inject(Router)
-  categories:Categories[]=[]
+  categories=signal<Categories[]>([])
+  categoriesCount =computed(()=>this.categories.length)
+  constructor(){
+    effect(()=>{
+      console.log(`${this.categoriesCount}`)
+    })
+  }
 
 
      ngOnInit(): void {
@@ -24,7 +30,7 @@ export class CategoriesComponent implements OnInit {
      getAllCategories():void{
       this.categoriesService.getAllCategories().subscribe({
         next:(res)=>{
-          this.categories=res.data
+          this.categories.set(res.data)
 
 
         },

@@ -1,4 +1,4 @@
-import { Component, inject,  OnInit } from '@angular/core';
+import { Component, computed, effect, inject,  OnInit, signal } from '@angular/core';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Products } from '../../core/models/products.interface';
 import { CardComponent } from "../../shared/components/card/card.component";
@@ -18,7 +18,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit  {
   private readonly route = inject(ActivatedRoute);
   private readonly productsService = inject(ProductsService);
-  listOfProducts :Products[]=[]
+  listOfProducts =signal<Products[]>([])
+    listOfProductsCount = computed(()=>this.listOfProducts.length)
+  constructor(){
+    effect(()=>console.log(this.listOfProductsCount))
+  }
   searchText:string=''
 
 
@@ -52,7 +56,7 @@ export class ProductsComponent implements OnInit  {
   getListOfProducts(page:number = 1):void{
     this.productsService.getAllProducts(page).subscribe({
       next:(res)=>{
-        this.listOfProducts=res.data
+        this.listOfProducts.set(res.data)
         this.rows=res.metadata.limit
         this.totalRecords=res.results
 

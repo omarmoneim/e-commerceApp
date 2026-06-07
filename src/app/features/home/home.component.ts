@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { PopularProductsComponent } from "./components/popular-products/popular-products.component";
 import { PopularCategoriesComponent } from "./components/popular-categories/popular-categories.component";
 import { MainSectionComponent } from "./components/main-section/main-section.component";
@@ -16,8 +16,12 @@ import { PopularBrandsComponent } from "./components/popular-brands/popular-bran
 })
 export class HomeComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
-  listOfProducts :Products[]=[]
+  listOfProducts=signal<Products[]>([])
   page:number = 2
+  listOfProductsCount = computed(()=>this.listOfProducts.length)
+  constructor(){
+    effect(()=>console.log(this.listOfProductsCount))
+  }
 
   ngOnInit(): void {
     this.getListOfProducts(this.page)
@@ -26,7 +30,7 @@ export class HomeComponent implements OnInit {
   getListOfProducts(page:number=2 ):void{
     this.productsService.getAllProducts(page).subscribe({
       next:(res)=>{
-        this.listOfProducts=res.data
+        this.listOfProducts.set(res.data)
       },
       error:(err)=>{
 

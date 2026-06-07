@@ -36,16 +36,25 @@
         </div>
 
         <!--! Price and rating  -->
-        <div class="flex justify-between items-center p-0  text-[12px] md:text-[14px]">
+        <div class="flex flex-col justify-between items-start p-0  text-[12px] md:text-[14px]">
           <span class=" text-stone-950 font-semibold">{{ product.price + " EGP" }}</span>
           <span class="font-normal text-stone-950"
-            >{{ product.ratingsAverage }}
+            >
             @if(product.ratingsAverage >= 4.5 ){
-            <i class="pi pi-star-fill" style="color: gold"></i>
+            <i class="pi pi-star-fill " style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill " style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill " style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill " style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill " style="color: gold; font-size: 0.8rem;"></i>
             } @else {
-            <i class="pi pi-star-half-fill" style="color: gold"></i>
+            <i class="pi pi-star-fill text-[8px]" style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill text-[8px]" style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill text-[8px]" style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-fill text-[8px]" style="color: gold; font-size: 0.8rem;"></i>
+            <i class="pi pi-star-half-fill text-[8px]" style="color: gold; font-size: 0.8rem;"></i>
 
             }
+            ({{product.ratingsAverage}})
           </span>
         </div>
 
